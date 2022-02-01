@@ -1,0 +1,138 @@
+gcc -g p4original.c
+ gdb a.out
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from a.out...done.
+(gdb) b main
+Breakpoint 1 at 0x8f1: file p4original.c, line 41.
+(gdb) r
+Starting program: /home/runner/pps-test1-VarunReddy967/a.out 
+warning: Error disabling address space randomization: Operation not permitted
+
+Breakpoint 1, main () at p4original.c:41
+41  {
+(gdb) n
+43    n=input_array_size();
+(gdb) s
+input_array_size () at p4original.c:9
+9   {
+(gdb) n
+11    printf("enter the size of array=\n");
+(gdb) n
+enter the size of array=
+12    scanf("%d",&n);
+(gdb) n
+3
+13    return n;
+(gdb) n
+14  }
+(gdb) n
+main () at p4original.c:44
+44    int a[n]; 
+(gdb) n
+45    input_array(n,a);
+(gdb) s
+input_array (n=3, a=0x7fff095fa780) at p4original.c:18
+18    printf("enter elements of array=\n");
+(gdb) n
+enter elements of array=
+19    for(i=0;i<n;i++)
+(gdb) n
+20    scanf("%d",&a[i]);
+(gdb) n
+24
+19    for(i=0;i<n;i++)
+(gdb) n
+20    scanf("%d",&a[i]);
+(gdb) n
+10
+19    for(i=0;i<n;i++)
+(gdb) n
+20    scanf("%d",&a[i]);
+(gdb) n
+34
+19    for(i=0;i<n;i++)
+(gdb) n
+21  }
+(gdb) n
+main () at p4original.c:46
+46    sum=sum_n_arrays(n,a);
+(gdb) s
+sum_n_arrays (n=3, a=0x7fff095fa780) at p4original.c:24
+24    int i,sum=0;
+(gdb) n
+25    for(i=0;i<n;i++)
+(gdb) n
+27      sum=sum+a[i];
+(gdb) p i
+$1 = 0
+(gdb) p a[i]
+$2 = 24
+(gdb) p sum
+$3 = 0
+(gdb) n
+25    for(i=0;i<n;i++)
+(gdb) n
+27      sum=sum+a[i];
+(gdb) p i
+$4 = 1
+(gdb) p a[i]
+$5 = 10
+(gdb) p sum
+$6 = 24
+(gdb) n
+25    for(i=0;i<n;i++)
+(gdb) n
+27      sum=sum+a[i];
+(gdb) p i
+$7 = 2
+(gdb) p a[i]
+$8 = 34
+(gdb) p sum
+$9 = 34
+(gdb) n
+25    for(i=0;i<n;i++)
+(gdb) p sum
+$10 = 68
+(gdb) n
+29    return sum;
+(gdb) n
+30  }
+(gdb) n
+main () at p4original.c:47
+47    output(n,a,sum); 
+(gdb) s
+output (n=3, a=0x7fff095fa780, sum=68) at p4original.c:34
+34    for(i=0;i<(n-1);i++)
+(gdb) n
+36      printf("%d+",a[i]);
+(gdb) n
+34    for(i=0;i<(n-1);i++)
+(gdb) n
+36      printf("%d+",a[i]);
+(gdb) n
+34    for(i=0;i<(n-1);i++)
+(gdb) n
+38    printf("%d=%d",a[n-1],sum);
+(gdb) n
+39  }
+(gdb) n
+main () at p4original.c:48
+48    return 0;
+(gdb) n
+49  }(gdb) c
+Continuing.
+24+10+34=68[Inferior 1 (process 597) exited normally]
+(gdb)

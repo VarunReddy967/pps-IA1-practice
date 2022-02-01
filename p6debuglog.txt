@@ -1,0 +1,75 @@
+ gcc -g p6original.c
+ gdb a.out
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from a.out...done.
+(gdb) b main
+Breakpoint 1 at 0x8aa: file p6original.c, line 37.
+(gdb) r
+Starting program: /home/runner/pps-IA1-practice/a.out 
+warning: Error disabling address space randomization: Operation not permitted
+
+Breakpoint 1, main () at p6original.c:37
+37  {
+(gdb) n
+40    input_two_string(a,b);
+(gdb) s
+input_two_string (a=0x7ffc0e028c30 "\a7\221\305\034\177", b=0x7ffc0e028ca0 "")
+    at p6original.c:10
+10    printf("enter word 1=\n");
+(gdb) n
+enter word 1=
+11    scanf("%s",a);
+(gdb) n
+rengoku
+12    printf("enter word 2=\n");
+(gdb) n
+enter word 2=
+13    scanf("%s",b);
+(gdb) n
+tanjiro
+14  }
+(gdb) n
+main () at p6original.c:41
+41    result=strcmpr(a,b);
+(gdb) s
+strcmpr (a=0x7ffc0e028c30 "rengoku", b=0x7ffc0e028ca0 "tanjiro")
+    at p6original.c:18
+18    while((*a==*b)&&(*a&&*b))
+(gdb) n
+23    result=*a-*b;
+(gdb) n
+24    return result;
+(gdb) n
+25  }
+(gdb) n
+main () at p6original.c:42
+42    output(a,b,result);
+(gdb) s
+output (a=0x7ffc0e028c30 "rengoku", b=0x7ffc0e028ca0 "tanjiro", result=-2)
+    at p6original.c:28
+28    if (result == 0)
+(gdb) n
+31    else if (result < 0){
+(gdb) n
+32    printf("%s is greater than %s\n",b,a);}
+(gdb) n
+tanjiro is greater than rengoku
+35  }
+(gdb) n
+main () at p6original.c:43
+43    return 0;
+(gdb) n
+44  }(gdb)
